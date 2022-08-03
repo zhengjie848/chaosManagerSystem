@@ -20,7 +20,7 @@ public class CorsConfig extends WebMvcConfigurationSupport {
     private CorsConfiguration buildConfig() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         // 允许任何域名使用
-        corsConfiguration.addAllowedOrigin("*");
+        corsConfiguration.addAllowedOrigin("http://localhost:8081/");
         // 允许任何头
         corsConfiguration.addAllowedHeader("*");
         // 允许任何方法（post、get等）
