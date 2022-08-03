@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "jackson.parser.allow_unquoted_control_chars",
+      "type": "java.lang.String",
+      "description": "Description for jackson.parser.allow_unquoted_control_chars."
+  }
+] }

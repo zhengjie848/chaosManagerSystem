@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.WorkerInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.springboot.entity.WorkerInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sfzid" jdbcType="VARCHAR" property="sfzid" />
+    <result column="wname" jdbcType="VARCHAR" property="wname" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="wage" jdbcType="TINYINT" property="wage" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="telno" jdbcType="VARCHAR" property="telno" />
+    <result column="applytime" jdbcType="TIMESTAMP" property="applytime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="signurl" jdbcType="VARCHAR" property="signurl" />
+    <result column="isactive" jdbcType="TINYINT" property="isactive" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="disc" jdbcType="VARCHAR" property="disc" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="ispass" jdbcType="TINYINT" property="ispass" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sfzid, wname, gender, wage, nation, telno, applytime, updatetime, signurl, isactive, city,
+    disc, address, ispass
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_workerinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findAll" resultType="com.example.springboot.entity.WorkerInfo">
+    select * from t_workerinfo where 1=1
+      <if test="wname!=null and wname!='' ">
+        and wname like '%' #{wname} '%'
+      </if>
+      <if test="telno!=null and telno!='' ">
+        and telno like '%' #{telno} '%'
+      </if>
+      <if test="applytime!=null and applytime!='' and applytime!='null' ">
+        and applytime like '%' #{applytime} '%'
+      </if>
+  </select>
+  <select id="countWorkerInfo" resultType="java.lang.Integer">
+    select count(*) from t_workerinfo
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_workerinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.springboot.entity.WorkerInfo">
+    insert into t_workerinfo (id, sfzid, wname, 
+      gender, wage, nation, 
+      telno, applytime, updatetime, signurl,
+      isactive, city, disc, 
+      address, ispass)
+    values (#{id,jdbcType=INTEGER}, #{sfzid,jdbcType=VARCHAR}, #{wname,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{wage,jdbcType=TINYINT}, #{nation,jdbcType=VARCHAR}, 
+      #{telno,jdbcType=VARCHAR}, #{applytime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{signurl,jdbcType=VARCHAR},
+      #{isactive,jdbcType=TINYINT}, #{city,jdbcType=VARCHAR}, #{disc,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{ispass,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.springboot.entity.WorkerInfo">
+    insert into t_workerinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sfzid != null">
+        sfzid,
+      </if>
+      <if test="wname != null">
+        wname,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="wage != null">
+        wage,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="telno != null">
+        telno,
+      </if>
+      <if test="applytime != null">
+        applytime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="signurl != null">
+        signurl,
+      </if>
+      <if test="isactive != null">
+        isactive,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="disc != null">
+        disc,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="ispass != null">
+        ispass,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sfzid != null">
+        #{sfzid,jdbcType=VARCHAR},
+      </if>
+      <if test="wname != null">
+        #{wname,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="wage != null">
+        #{wage,jdbcType=TINYINT},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="telno != null">
+        #{telno,jdbcType=VARCHAR},
+      </if>
+      <if test="applytime != null">
+        #{applytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signurl != null">
+        #{signurl,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        #{isactive,jdbcType=TINYINT},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="disc != null">
+        #{disc,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="ispass != null">
+        #{ispass,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springboot.entity.WorkerInfo">
+    update t_workerinfo
+    <set>
+      <if test="sfzid != null">
+        sfzid = #{sfzid,jdbcType=VARCHAR},
+      </if>
+      <if test="wname != null">
+        wname = #{wname,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="wage != null">
+        wage = #{wage,jdbcType=TINYINT},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="telno != null">
+        telno = #{telno,jdbcType=VARCHAR},
+      </if>
+      <if test="applytime != null">
+        applytime = #{applytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signurl != null">
+        signurl = #{signurl,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        isactive = #{isactive,jdbcType=TINYINT},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="disc != null">
+        disc = #{disc,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="ispass != null">
+        ispass = #{ispass,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springboot.entity.WorkerInfo">
+    update t_workerinfo
+    set sfzid = #{sfzid,jdbcType=VARCHAR},
+      wname = #{wname,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      wage = #{wage,jdbcType=TINYINT},
+      nation = #{nation,jdbcType=VARCHAR},
+      telno = #{telno,jdbcType=VARCHAR},
+      applytime = #{applytime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      signurl = #{signurl,jdbcType=VARCHAR},
+      isactive = #{isactive,jdbcType=TINYINT},
+      city = #{city,jdbcType=VARCHAR},
+      disc = #{disc,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      ispass = #{ispass,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
